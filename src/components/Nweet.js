@@ -11,6 +11,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
     await updateDoc(NweetTextRef, {
       text: newNweet,
     });
@@ -53,6 +54,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{nweetObj.text}</h4>
+          {nweetObj.atttachmentUrl && (
+            <img src={nweetObj.atttachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Nweet</button>
