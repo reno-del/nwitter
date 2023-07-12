@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { dbService } from "fbase";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
@@ -34,17 +33,22 @@ const Nweet = ({ nweetObj, isOwner }) => {
     <div>
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              placeholder="Edit your nweet"
-              value={newNweet}
-              required
-              onChange={onChange}
-            />
-            <input type="submit" value="Update Nweet" />
-          </form>
-          <button onClick={toggleEditing}>Cancel</button>
+          {isOwner && (
+            <>
+              {" "}
+              <form onSubmit={onSubmit}>
+                <input
+                  type="text"
+                  placeholder="Edit your nweet"
+                  value={newNweet}
+                  required
+                  onChange={onChange}
+                />
+                <input type="submit" value="Update Nweet" />
+              </form>
+              <button onClick={toggleEditing}>Cancel</button>
+            </>
+          )}
         </>
       ) : (
         <>
